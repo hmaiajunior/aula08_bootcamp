@@ -31,9 +31,17 @@ def carregar_dados(df: pd.DataFrame, formatos: list):
             df.to_parquet("dados.parquet", index=False)
 
 
-if __name__ == "__main__":
-    pasta_argumento: str = 'data'
-    data_frame = extrair_dados_e_consolidar(pasta=pasta_argumento)
+
+def pipeline_calcular_kpi_de_vendas_consolidado(pasta: str, formato_de_saida: list):
+    data_frame = extrair_dados_e_consolidar(pasta)
     data_frame_calculado = calcular_kpi_de_total_de_vendas(data_frame)
-    formato_de_saida: list = ["csv","parquet"]
     carregar_dados(data_frame_calculado, formato_de_saida)
+
+# Usar a estrutura abaixo para ir realizado os testes da ETL enquanto vai desenvolvendo
+            
+# if __name__ == "__main__":
+#     pasta_argumento: str = 'data'
+#     data_frame = extrair_dados_e_consolidar(pasta=pasta_argumento)
+#     data_frame_calculado = calcular_kpi_de_total_de_vendas(data_frame)
+#     formato_de_saida: list = ["csv","parquet"]
+#     carregar_dados(data_frame_calculado, formato_de_saida)
